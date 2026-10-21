@@ -67,7 +67,7 @@ def preprocess_data(filename='pulsar_star_dataset.csv'):
     # Load and preprocess data
     df = pd.read_csv(filename)
     X = df.drop('Class', axis=1).values
-    y = df['Class'].values
+    y = df['Class'].values.astype(float)  # CVXOPT needs float ('d') labels
     y[y == 0] = -1  # Convert to -1/1 labels
     
     # Split data
